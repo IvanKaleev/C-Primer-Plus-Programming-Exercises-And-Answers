@@ -13,7 +13,7 @@
 
 
 #include <stdio.h>
-#define basic_pay_rate 10
+#define basic_pay_rate 10 // Constants are written in uppercase.
 #define basic_time 40
 #define overtime 1.5
 #define rate_tier_1 300
@@ -24,18 +24,27 @@
 
 int main(void)
 {
-	float hours, time;
+	float hours, time; // "time"  is a reserved variable name in C. Not the best choice of name.
 	float gross_pay, taxes, net_pay;
+	float h_overt=0; // Overtime work 
 	
 	printf("How many hours your work in a week?\n");
 	scanf("%f", &hours);
-	
+	/* 
 	if (hours > basic_time)
-		time = hours * overtime;
+		time = hours * overtime; // Semantic error.
 	else
 		time = hours;
 	
 	gross_pay = time * basic_pay_rate;
+	*/
+	
+	 /*Definition of overtime*/
+	if (hours > basic_time)
+	   h_overt=hours-basic_time;
+	//printf ("Basic_time: %d. Hours overtime: %0.1f\n, Sum: %0.1f\n", basic_time,h_overt,basic_time+h_overt);
+	gross_pay=basic_time*basic_pay_rate+h_overt*basic_pay_rate*overtime;
+	//printf ("Gross_pay: %0.2f $.\n", gross_pay);
 	
 	if (gross_pay < rate_tier_1)
 		taxes = gross_pay * tax_rate_1;
